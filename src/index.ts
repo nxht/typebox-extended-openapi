@@ -19,4 +19,4 @@ export const TypeXGuard = {
   IsStringEnum: IsStringEnum,
 };
 
-export type { TStringEnum, TStringWithAutoComplete, MergeProperties };
+export type { MergeProperties, TStringEnum, TStringWithAutoComplete };

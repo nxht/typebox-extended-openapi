@@ -3,7 +3,6 @@
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedDeclarations": true,
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
