@@ -9,9 +9,9 @@ type StringWithAutoComplete<T extends readonly string[]> =
 export interface TStringWithAutoComplete<T extends readonly string[]>
   extends TString {
   static: StringWithAutoComplete<T>;
-  enum: string[];
+  enum: T;
 }
-
+/** Creates a String type with type auto complete */
 export const StringWithAutoComplete = <T extends readonly string[]>(
   enumStrings: T,
   options: StringOptions = {},
@@ -23,5 +23,5 @@ export const StringWithAutoComplete = <T extends readonly string[]>(
     enum: enumStrings,
     [Kind]: 'String',
     type: 'string',
-  } as unknown as TStringWithAutoComplete<T>;
+  } as TStringWithAutoComplete<T>;
 };

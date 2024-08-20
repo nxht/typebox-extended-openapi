@@ -10,9 +10,13 @@ export interface TStringEnum<T extends readonly string[]>
   [Kind]: 'StringEnum';
   static: ToUnion<T>;
   type: 'string';
-  enum: string[];
+  enum: T;
 }
 
+/** Creates a StringEnum type
+ * @param enumStrings - The enum string tuple. Use `as const` to ensure type safety
+ * @example const MyEnum = TypeX.StringEnum(['a', 'b', 'c'] as const)
+ */
 export const StringEnum = <T extends readonly string[]>(
   enumStrings: T,
   options: StringEnumOptions = {},
@@ -21,10 +25,10 @@ export const StringEnum = <T extends readonly string[]>(
 
   return {
     ...stringOptions,
-    enum: enumStrings as unknown as string[],
+    enum: enumStrings,
     [Kind]: 'StringEnum',
     type: 'string',
-  } as unknown as TStringEnum<T>;
+  } as TStringEnum<T>;
 };
 
 function CheckEnum(enumValue: unknown): enumValue is string[] {

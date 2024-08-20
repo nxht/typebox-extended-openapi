@@ -27,6 +27,11 @@ export type MergeProperties<A extends readonly TObjectOrProperties[]> =
     : // biome-ignore lint/complexity/noBannedTypes: Expected typing
       {};
 
+/** Creates a Merge object type
+ * - Accepts both `Type.Object` and its properties
+ * - Similar to `Type.Intersect` but uses merged properties instead of `allOf`
+ * - Unlike `Type.Composite`, if there's key conflict, the right-most schema will be used
+ */
 export function Merge<T extends TObjectOrProperties[]>(
   T: [...T],
   objectOptions?: ObjectOptions,
