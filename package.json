@@ -1,18 +1,25 @@
 {
   "name": "@nxht/typebox-extended-openapi",
-  "module": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nxht/typebox-extended-openapi"
+  },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "exports": {
+    "bun": "./src/index.ts"
+  },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.33.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/bun": "latest",
+    "typescript": "^5.5.4"
   }
 }
