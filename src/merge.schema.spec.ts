@@ -3,11 +3,35 @@ import { Merge } from './merge.schema';
 import { describe, test, expect } from 'bun:test';
 
 describe('Merge', () => {
-  test('base', () => {
+  test('base with Type.Object', () => {
     const t = Merge([
       Type.Object({ a: Type.String() }),
       Type.Object({ b: Type.Number() }),
     ]);
+    type t = Static<typeof t>;
+    expect(TypeGuard.IsObject(t)).toBe(true);
+    expect(TypeGuard.IsString(t.properties.a)).toBe(true);
+    expect(TypeGuard.IsNumber(t.properties.b)).toBe(true);
+  });
+
+  test('base with properties', () => {
+    const t = Merge([{ a: Type.String() }, { b: Type.Number() }]);
+    type t = Static<typeof t>;
+    expect(TypeGuard.IsObject(t)).toBe(true);
+    expect(TypeGuard.IsString(t.properties.a)).toBe(true);
+    expect(TypeGuard.IsNumber(t.properties.b)).toBe(true);
+  });
+
+  test('base mixed', () => {
+    const t = Merge([{ a: Type.String() }, Type.Object({ b: Type.Number() })]);
+    type t = Static<typeof t>;
+    expect(TypeGuard.IsObject(t)).toBe(true);
+    expect(TypeGuard.IsString(t.properties.a)).toBe(true);
+    expect(TypeGuard.IsNumber(t.properties.b)).toBe(true);
+  });
+
+  test('base mixed 2 ', () => {
+    const t = Merge([Type.Object({ a: Type.String() }), { b: Type.Number() }]);
     type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a)).toBe(true);

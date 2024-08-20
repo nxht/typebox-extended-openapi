@@ -11,7 +11,9 @@ export interface TStringWithAutoComplete<T extends readonly string[]>
   static: StringWithAutoComplete<T>;
   enum: T;
 }
-/** Creates a String type with type auto complete */
+/** Creates a String type with type auto complete
+ * - Unlike `StringEnum`, this type doesn't validate if the value is in the enum.
+ */
 export const StringWithAutoComplete = <T extends readonly string[]>(
   enumStrings: T,
   options: StringOptions = {},

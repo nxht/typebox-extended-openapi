@@ -41,7 +41,7 @@
   },
   "overrides": [
     {
-      "include": ["src/**/*.spec.ts"],
+      "include": ["src/*.spec.ts"],
       "linter": {
         "rules": {
           "correctness": {
