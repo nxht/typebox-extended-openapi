@@ -38,5 +38,17 @@
         "noConsoleLog": "warn"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["src/**/*.spec.ts"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    }
+  ]
 }

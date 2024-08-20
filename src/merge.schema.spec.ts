@@ -1,4 +1,4 @@
-import { Type, TypeGuard } from '@sinclair/typebox';
+import { Type, TypeGuard, type Static } from '@sinclair/typebox';
 import { Merge } from './merge.schema';
 import { describe, test, expect } from 'bun:test';
 
@@ -8,6 +8,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.String() }),
       Type.Object({ b: Type.Number() }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a)).toBe(true);
     expect(TypeGuard.IsNumber(t.properties.b)).toBe(true);
@@ -18,6 +19,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.String() }),
       Type.Object({ b: Type.Optional(Type.String()) }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a)).toBe(true);
     expect(TypeGuard.IsOptional(t.properties.b)).toBe(true);
@@ -29,6 +31,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.String(), b: Type.String() }),
       Type.Object({ a: Type.Number(), c: Type.String() }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsNumber(t.properties.a)).toBe(true);
     expect(TypeGuard.IsString(t.properties.b)).toBe(true);
@@ -40,6 +43,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.Object({ a2: Type.String() }), b: Type.String() }),
       Type.Object({ a: Type.String(), c: Type.String() }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a)).toBe(true);
     expect(TypeGuard.IsString(t.properties.b)).toBe(true);
@@ -51,6 +55,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.String(), b: Type.String() }),
       Type.Object({ a: Type.Object({ a2: Type.String() }), c: Type.String() }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsObject(t.properties.a)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a.properties.a2)).toBe(true);
@@ -64,6 +69,7 @@ describe('Merge', () => {
       Type.Object({ a: Type.Number(), b: Type.Number() }),
       Type.Object({ a: Type.Boolean(), d: Type.String() }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsBoolean(t.properties.a)).toBe(true);
     expect(TypeGuard.IsNumber(t.properties.b)).toBe(true);
@@ -81,6 +87,7 @@ describe('Merge', () => {
         c: Type.String(),
       }),
     ]);
+    type t = Static<typeof t>;
     expect(TypeGuard.IsObject(t)).toBe(true);
     expect(TypeGuard.IsString(t.properties.a)).toBe(true);
     expect(t.properties.a.description).toBe('updated description');
