@@ -13,7 +13,8 @@
   },
   "scripts": {
     "build": "rm -rf dist/ && tsc -p tsconfig.build.json",
-    "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100"
+    "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
+    "prepublishOnly": "bun run build"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.33.7"
