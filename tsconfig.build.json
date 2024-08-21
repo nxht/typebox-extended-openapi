@@ -3,6 +3,6 @@
   "include": ["src"],
   "exclude": ["src/**/*.spec.ts"],
   "compilerOptions": {
-    "sourceMap": true
+    "outDir": "dist/esm"
   }
 }

@@ -14,7 +14,7 @@
     "import": "./dist/esm/index.js"
   },
   "scripts": {
-    "build:esm": "tsc -p tsconfig.build.json --outDir dist/esm -m esnext",
+    "build:esm": "tsc -p tsconfig.build.json",
     "build:cjs": "tsc -p tsconfig.build-cjs.json",
     "build": "rm -rf dist/ && bun run build:esm && bun run build:cjs",
     "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
