@@ -6,6 +6,8 @@ biome.jsonc
 node_modules/
 bun.lockb
 
+trace/
+
 test*.ts
 
 tsconfig.*
