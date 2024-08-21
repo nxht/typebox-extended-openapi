@@ -1,6 +1,6 @@
 {
   "name": "@nxht/typebox-extended-openapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/nxht/typebox-extended-openapi"
@@ -20,8 +20,8 @@
     "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
     "prepublishOnly": "bun run build"
   },
-  "dependencies": {
-    "@sinclair/typebox": "^0.33.7"
+  "peerDependencies": {
+    "@sinclair/typebox": "^0.32.35 || ^0.33.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
