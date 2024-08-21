@@ -18,6 +18,7 @@ Similar to `Type.Enum` but
 
 ```ts
 import { TypeX, TypeXGuard } from '@nxht/typebox-extended-openapi';
+import { Value } from '@sinclair/typebox/value';
 
 const T = TypeX.StringEnum(['a', 'b', 'c'] as const);
 // Json Schema
@@ -28,6 +29,9 @@ const T = TypeX.StringEnum(['a', 'b', 'c'] as const);
 
 type T = Static<typeof T>;
 // type T = 'a' | 'b' | 'c'
+
+Value.Check(T, 'a') // true
+Value.Check(T, 'd') // false
 
 // TypeGuard for StringEnum
 TypeXGuard.IsStringEnum(T); // true
@@ -49,6 +53,9 @@ const T = TypeX.StringWithAutoComplete(['a', 'b', 'c'] as const);
 
 type T = Static<typeof T>;
 // type T = "a" | "b" | "c" | (string & {})
+
+Value.Check(T, 'a') // true
+Value.Check(T, 'd') // true
 ```
 
 ### Merge
