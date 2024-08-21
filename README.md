@@ -20,6 +20,7 @@ Similar to `Type.Enum` but
 import { TypeX, TypeXGuard } from '@nxht/typebox-extended-openapi';
 import { Value } from '@sinclair/typebox/value';
 
+// Use tuple (`as const`) to enable type inference
 const T = TypeX.StringEnum(['a', 'b', 'c'] as const);
 // Json Schema
 // const T = {
@@ -44,6 +45,7 @@ Similar to `TypeX.StringEnum` but doesn't validate if the value is in the enum l
 ```ts
 import { TypeX, TypeXGuard } from '@nxht/typebox-extended-openapi';
 
+// Use tuple (`as const`) to enable type inference
 const T = TypeX.StringWithAutoComplete(['a', 'b', 'c'] as const);
 // Json Schema
 // const T = {
