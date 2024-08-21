@@ -6,13 +6,17 @@
     "url": "https://github.com/nxht/typebox-extended-openapi"
   },
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
   "types": "./src/index.ts",
   "exports": {
-    "bun": "./src/index.ts"
+    "bun": "./src/index.ts",
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
   },
   "scripts": {
-    "build": "rm -rf dist/ && tsc -p tsconfig.build.json",
+    "build:esm": "tsc -p tsconfig.build.json --outDir dist/esm -m esnext",
+    "build:cjs": "tsc -p tsconfig.build-cjs.json",
+    "build": "rm -rf dist/ && bun run build:esm && bun run build:cjs",
     "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
     "prepublishOnly": "bun run build"
   },
