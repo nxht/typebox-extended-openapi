@@ -9,7 +9,7 @@ import type { Prettify } from './types';
 
 type TObjectOrProperties = TObject | TProperties;
 
-type GetProperties<T extends TObjectOrProperties> = T extends TObject
+type GetTProperties<T extends TObjectOrProperties> = T extends TObject
   ? T['properties']
   : T;
 
@@ -23,8 +23,8 @@ export type MergeProperties<A extends readonly TObjectOrProperties[]> =
     infer L extends TObjectOrProperties,
     ...infer R extends TObjectOrProperties[],
   ]
-    ? MergeTwoProperties<GetProperties<L>, MergeProperties<R>>
-    : // biome-ignore lint/complexity/noBannedTypes: Expected typing
+    ? MergeTwoProperties<GetTProperties<L>, MergeProperties<R>>
+    : // biome-ignore lint/complexity/noBannedTypes: Expected
       {};
 
 /** Creates a Merge object type
