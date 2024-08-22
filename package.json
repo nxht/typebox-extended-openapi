@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/nxht/typebox-extended-openapi"
   },
+  "keywords": ["typescript", "typebox", "json-schema", "openapi"],
   "type": "module",
   "main": "./dist/cjs/index.js",
   "types": "./src/index.ts",
