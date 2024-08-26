@@ -1,5 +1,5 @@
 import { Type, TypeGuard, type Static } from '@sinclair/typebox';
-import { Merge } from './merge.schema';
+import { Merge } from '../src/merge.schema';
 import { describe, test, expect } from 'bun:test';
 
 describe('Merge', () => {

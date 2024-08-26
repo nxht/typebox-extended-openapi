@@ -1,6 +1,6 @@
 import { Type, TypeGuard, type Static } from '@sinclair/typebox';
 import { describe, test, expect } from 'bun:test';
-import { StringEnum, IsStringEnum } from './string-enum.schema';
+import { StringEnum, IsStringEnum } from '../src/string-enum.schema';
 import { Value } from '@sinclair/typebox/value';
 
 describe('StringEnum', () => {

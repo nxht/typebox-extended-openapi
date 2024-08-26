@@ -1,7 +1,7 @@
 import { TypeGuard, type Static } from '@sinclair/typebox';
 import { describe, test, expect } from 'bun:test';
 import { Value } from '@sinclair/typebox/value';
-import { StringWithAutoComplete } from './string-with-auto-complete.schema';
+import { StringWithAutoComplete } from '../src/string-with-auto-complete.schema';
 
 describe('StringWithAutoComplete', () => {
   test('base', () => {
