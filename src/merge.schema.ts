@@ -1,9 +1,9 @@
 import {
   Kind,
-  Type,
   type ObjectOptions,
   type TObject,
   type TProperties,
+  Type,
 } from '@sinclair/typebox';
 import type { Prettify } from './types';
 

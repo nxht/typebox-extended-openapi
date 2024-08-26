@@ -1,5 +1,5 @@
-import { TypeGuard, type Static } from '@sinclair/typebox';
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
+import { type Static, TypeGuard } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 import { StringWithAutoComplete } from '../src/string-with-auto-complete.schema';
 

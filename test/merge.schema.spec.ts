@@ -1,6 +1,6 @@
-import { Type, TypeGuard, type Static } from '@sinclair/typebox';
+import { describe, expect, test } from 'bun:test';
+import { type Static, Type, TypeGuard } from '@sinclair/typebox';
 import { Merge } from '../src/merge.schema';
-import { describe, test, expect } from 'bun:test';
 
 describe('Merge', () => {
   test('base with Type.Object', () => {
