@@ -1,5 +1,10 @@
-import type { StringOptions, TSchema } from '@sinclair/typebox';
-import { Kind, TypeGuard, TypeRegistry } from '@sinclair/typebox';
+import {
+  Kind,
+  type StringOptions,
+  type TSchema,
+  TypeGuard,
+  TypeRegistry,
+} from '@sinclair/typebox';
 import type { ToUnion } from './types';
 
 export type StringEnumOptions = StringOptions;

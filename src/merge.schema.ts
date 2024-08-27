@@ -3,7 +3,7 @@ import {
   type ObjectOptions,
   type TObject,
   type TProperties,
-  Type,
+  Object as TypeObject,
 } from '@sinclair/typebox';
 import type { Prettify } from './types';
 
@@ -43,7 +43,7 @@ export function Merge<T extends TObjectOrProperties[]>(
     return schema;
   });
 
-  return Type.Object(
+  return TypeObject(
     Object.assign({}, ...properties) as MergeProperties<T>,
     objectOptions,
   );

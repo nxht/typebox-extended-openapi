@@ -1,5 +1,4 @@
-import type { StringOptions } from '@sinclair/typebox';
-import { Kind, type TString } from '@sinclair/typebox';
+import { Kind, type StringOptions, type TString } from '@sinclair/typebox';
 import type { ToUnion } from './types';
 
 type StringWithAutoComplete<T extends readonly string[]> =
