@@ -18,8 +18,8 @@ export interface TStringEnum<T extends readonly string[]>
 }
 
 /** Creates a StringEnum type
- * @param enumStrings - The enum string tuple. Use `as const` to ensure type safety
- * @example const MyEnum = TypeX.StringEnum(['a', 'b', 'c'] as const)
+ * @param enumStrings - The enum string tuple
+ * @example const MyEnum = TypeX.StringEnum(['a', 'b', 'c'])
  */
 export const StringEnum = <const T extends readonly string[]>(
   enumStrings: T,
