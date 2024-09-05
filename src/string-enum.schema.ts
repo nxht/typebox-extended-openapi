@@ -5,7 +5,6 @@ import {
   TypeGuard,
   TypeRegistry,
 } from '@sinclair/typebox';
-import type { ToUnion } from './types';
 
 export type StringEnumOptions = StringOptions;
 
@@ -13,7 +12,7 @@ export interface TStringEnum<T extends readonly string[]>
   extends TSchema,
     StringOptions {
   [Kind]: 'StringEnum';
-  static: ToUnion<T>;
+  static: T[number];
   type: 'string';
   enum: T;
 }
@@ -22,7 +21,7 @@ export interface TStringEnum<T extends readonly string[]>
  * @param enumStrings - The enum string tuple. Use `as const` to ensure type safety
  * @example const MyEnum = TypeX.StringEnum(['a', 'b', 'c'] as const)
  */
-export const StringEnum = <T extends readonly string[]>(
+export const StringEnum = <const T extends readonly string[]>(
   enumStrings: T,
   options: StringEnumOptions = {},
 ): TStringEnum<T> => {
