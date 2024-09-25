@@ -1,4 +1,5 @@
 import { Merge, type MergeProperties } from './merge.schema';
+import { Nullable } from './nullable.schema';
 import {
   IsStringEnum,
   StringEnum,
@@ -13,6 +14,7 @@ export const TypeX = {
   StringEnum: StringEnum,
   StringWithAutoComplete: StringWithAutoComplete,
   Merge: Merge,
+  Nullable: Nullable,
 };
 
 export const TypeXGuard = {
