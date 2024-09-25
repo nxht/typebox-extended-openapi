@@ -4,7 +4,7 @@ import { Value } from '@sinclair/typebox/value';
 export interface TNullable<T extends TSchema = TSchema> extends TSchema {
   [Kind]: 'Nullable';
   [Hint]: string;
-  static: T | null;
+  static: T['static'] | null;
   nullable: true;
 }
 
