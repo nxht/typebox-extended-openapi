@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'bun:test';
-import { type Static, TypeGuard } from '@sinclair/typebox';
+import { TypeGuard } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 import { StringWithAutoComplete } from '../src/string-with-auto-complete.schema';
 
 describe('StringWithAutoComplete', () => {
   test('base', () => {
     const t = StringWithAutoComplete(['a', 'b']);
-    type t = Static<typeof t>;
+    type t = typeof t.static;
     expect(TypeGuard.IsString(t)).toBe(true);
     expect(t.enum).toEqual(['a', 'b']);
   });

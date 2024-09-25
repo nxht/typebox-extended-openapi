@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'bun:test';
-import { type Static, Type, TypeGuard } from '@sinclair/typebox';
+import { Type, TypeGuard } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
-import { IsStringEnum, StringEnum } from '../src/string-enum.schema';
+import { TypeX } from '../src';
+import { IsStringEnum } from '../src/string-enum.schema';
 
 describe('StringEnum', () => {
   test('base', () => {
-    const t = StringEnum(['a', 'b']);
-    type t = Static<typeof t>;
+    const t = TypeX.StringEnum(['a', 'b']);
+    type t = typeof t.static;
     expect(TypeGuard.IsKindOf(t, 'StringEnum')).toBe(true);
     expect(t.enum).toEqual(['a', 'b']);
   });
@@ -14,7 +15,7 @@ describe('StringEnum', () => {
 
 describe('IsStringEnum', () => [
   test('TStringEnum', () => {
-    const t = StringEnum(['a', 'b']);
+    const t = TypeX.StringEnum(['a', 'b']);
     expect(IsStringEnum(t)).toBe(true);
     expect(TypeGuard.IsString(t)).toBe(false);
   }),
@@ -28,7 +29,7 @@ describe('IsStringEnum', () => [
 
 describe('Value', () => {
   test('base', () => {
-    const t = StringEnum(['a', 'b']);
+    const t = TypeX.StringEnum(['a', 'b']);
     expect(Value.Check(t, 'a')).toBe(true);
     expect(Value.Check(t, 'b')).toBe(true);
     expect(Value.Check(t, 'c')).toBe(false);
