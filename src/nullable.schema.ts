@@ -1,7 +1,7 @@
 import { Hint, Kind, type TSchema, TypeRegistry } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 
-export interface TNullable<T extends TSchema> extends TSchema {
+export interface TNullable<T extends TSchema = TSchema> extends TSchema {
   [Kind]: 'Nullable';
   [Hint]: string;
   static: T | null;
@@ -24,7 +24,7 @@ export const Nullable = <T extends TSchema = TSchema>(
   } as unknown as TNullable<T>;
 };
 
-TypeRegistry.Set<TNullable<TSchema>>('Nullable', (schema, value) => {
+TypeRegistry.Set<TNullable>('Nullable', (schema, value) => {
   if (value === null) return true;
 
   const { [Kind]: kind, [Hint]: subKind, ...subSchema } = schema;
