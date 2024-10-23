@@ -11,6 +11,27 @@ describe('StringEnum', () => {
     expect(TypeGuard.IsKindOf(t, 'StringEnum')).toBe(true);
     expect(t.enum).toEqual(['a', 'b']);
   });
+
+  test('with enum', () => {
+    enum A {
+      c = 'a',
+      d = 'b',
+    }
+    const t = TypeX.StringEnum(A);
+    type t = typeof t.static;
+    expect(TypeGuard.IsKindOf(t, 'StringEnum')).toBe(true);
+    expect(t.enum).toEqual([A.c, A.d]);
+  });
+
+  test('with object', () => {
+    const t = TypeX.StringEnum({
+      c: 'a',
+      d: 'b',
+    });
+    type t = typeof t.static;
+    expect(TypeGuard.IsKindOf(t, 'StringEnum')).toBe(true);
+    expect(t.enum).toEqual(['a', 'b']);
+  });
 });
 
 describe('IsStringEnum', () => [

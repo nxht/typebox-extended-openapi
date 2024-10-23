@@ -18,21 +18,43 @@ export interface TStringEnum<T extends readonly string[]>
 }
 
 /** Creates a StringEnum type
- * @param enumStrings - The enum string tuple
+ * @param items - The enum string tuple or enum object
  * @example const MyEnum = TypeX.StringEnum(['a', 'b', 'c'])
  */
-export const StringEnum = <const T extends readonly string[]>(
-  enumStrings: T,
+export const StringEnum = <
+  const T extends readonly string[] | Record<string, string>,
+>(
+  items: T,
   options: StringEnumOptions = {},
-): TStringEnum<T> => {
+): TStringEnum<T extends readonly string[] ? T : T[keyof T][]> => {
   const { ...stringOptions } = options;
+
+  type O = T extends readonly string[] ? T : T[keyof T][];
+
+  function isArray(
+    items: readonly string[] | Record<string, string>,
+  ): items is readonly string[] {
+    return Array.isArray(items);
+  }
+
+  if (isArray(items)) {
+    items;
+    return {
+      ...stringOptions,
+      enum: items,
+      [Kind]: 'StringEnum',
+      type: 'string',
+    } as TStringEnum<O>;
+  }
+
+  const stringList = Object.values(items) as T[keyof T][];
 
   return {
     ...stringOptions,
-    enum: enumStrings,
+    enum: stringList,
     [Kind]: 'StringEnum',
     type: 'string',
-  } as TStringEnum<T>;
+  } as TStringEnum<O>;
 };
 
 function CheckEnum(enumValue: unknown): enumValue is string[] {
