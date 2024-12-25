@@ -19,15 +19,16 @@
     "build": "bun tsup",
     "attw": "attw -P .",
     "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "peerDependencies": {
-    "@sinclair/typebox": "^0.33.7"
+    "@sinclair/typebox": "^0.34.13"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",
     "@types/bun": "latest",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.2"
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   }
 }
