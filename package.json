@@ -5,19 +5,11 @@
     "type": "git",
     "url": "https://github.com/nxht/typebox-extended-openapi"
   },
-  "keywords": [
-    "typescript",
-    "typebox",
-    "json-schema",
-    "openapi"
-  ],
+  "keywords": ["typescript", "typebox", "json-schema", "openapi"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
+  "files": ["src", "dist"],
   "exports": {
     "bun": "./src/index.ts",
     "require": "./dist/index.cjs",
@@ -25,16 +17,18 @@
   },
   "scripts": {
     "build": "bun tsup",
-    "attw": "attw -P .",
-    "trace": "bunx tsc --noEmit --generateTrace trace && bunx analyze-trace trace --force-millis 100",
+    "attw": "bunx @arethetypeswrong/cli -P .",
+    "trace": "bunx typescript --noEmit --generateTrace trace && bunx @typescript/analyze-trace trace --force-millis 100",
     "prepublishOnly": "bun run build",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "bunx conventional-changelog-cli -p angular -i CHANGELOG.md -s",
+    "release": "bunx release-it"
   },
   "peerDependencies": {
     "@sinclair/typebox": "^0.34.13"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",
+    "@release-it/conventional-changelog": "^9.0.4",
     "@types/bun": "latest",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
