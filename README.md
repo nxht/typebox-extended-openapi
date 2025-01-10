@@ -14,7 +14,7 @@ $ npm install @nxht/typebox-extended-openapi
 Similar to `Type.Enum` but
 - Only accepts string.
 - Uses JSONSchema `enum` keyword instead of `anyOf` for OpenAPI compatibility.
-- Unlike using [Type.Unsafe](https://github.com/sinclairzx81/typebox?tab=readme-ov-file#unsafe-types), this Validates if the value is in the enum list.
+- Unlike using [Type.Unsafe](https://github.com/sinclairzx81/typebox?tab=readme-ov-file#unsafe-types), this validates if the value is in the enum list.
 
 ```ts
 import { TypeX, TypeXGuard } from '@nxht/typebox-extended-openapi';
@@ -91,21 +91,33 @@ Value.Check(T,  1) // false
 ### Merge
 
 Merge multiple Typebox schema into one
+- Unlike `Type.Intersect` or `Type.Composite`, if there's key conflict, the right-most schema will be used.
 - Unlike `Type.Intersect`, the result schema will have merged properties instead of `allOf` which could be better for OpenAPI specification readability.
-- Unlike `Type.Composite`, if there's key conflict, the right-most schema will be used. Also, much faster type inference.
+- Much faster type inference than `Type.Composite` especially for large object.
 
 ```ts
 import { Type, type Static } from '@sinclair/typebox';
 import { TypeX } from '@nxht/typebox-extended-openapi';
 
-const T = TypeX.Merge([
-  Type.Object({ a: Type.String() }),
-  Type.Object({ a: Type.Number(), b: Type.String() }),
-]);
+const A = Type.Object({
+  a: Type.Union([Type.String(), Type.Number()]),
+}); 
+// type A = { a: string | number }
+const B = Type.Object({
+  a: Type.Union([Type.String(), Type.Boolean()]),
+  b: Type.String(),
+});
+// type B = { a: string | boolean, b: string }
 
-type T = Static<typeof T>;
-// type T = {
-//   a: number;
-//   b: string;
-// }
+const TIntersect = Type.Intersect([A, B]);
+type TIntersect = Static<typeof TIntersect>;
+// type TIntersect = { a: string | number } & { a: string | boolean, b: string } 
+
+const TComposite = Type.Composite([A, B]);
+type TComposite = Static<typeof TComposite>;
+// type TIntersect = { a: string, b: string }
+
+const TMerge = TypeX.Merge([A, B]);
+type TMerge = Static<typeof TMerge>;
+// type TIntersect = { a: string | boolean, b: string }
 ```
